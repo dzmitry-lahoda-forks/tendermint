@@ -5,7 +5,7 @@ import (
 	"os"
 
 	"github.com/tendermint/tendermint/crypto"
-	"github.com/tendermint/tendermint/crypto/ed25519"
+	"github.com/tendermint/tendermint/crypto/bn256"
 	"github.com/tendermint/tendermint/internal/jsontypes"
 	tmos "github.com/tendermint/tendermint/libs/os"
 )
@@ -87,7 +87,7 @@ func LoadOrGenNodeKey(filePath string) (NodeKey, error) {
 
 // GenNodeKey generates a new node key.
 func GenNodeKey() NodeKey {
-	privKey := ed25519.GenPrivKey()
+	privKey := bn256.GenPrivKey()
 	return NodeKey{
 		ID:      NodeIDFromPubKey(privKey.PubKey()),
 		PrivKey: privKey,

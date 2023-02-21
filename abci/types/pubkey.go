@@ -3,10 +3,11 @@ package types
 import (
 	fmt "fmt"
 
-	"github.com/tendermint/tendermint/crypto/ed25519"
-	"github.com/tendermint/tendermint/crypto/encoding"
 	"github.com/tendermint/tendermint/crypto/secp256k1"
 	"github.com/tendermint/tendermint/crypto/sr25519"
+	"github.com/tendermint/tendermint/crypto/bn256"
+	"github.com/tendermint/tendermint/crypto/ed25519"
+	"github.com/tendermint/tendermint/crypto/encoding"
 )
 
 func Ed25519ValidatorUpdate(pk []byte, power int64) ValidatorUpdate {
@@ -39,6 +40,16 @@ func UpdateValidator(pk []byte, power int64, keyType string) ValidatorUpdate {
 		}
 	case sr25519.KeyType:
 		pke := sr25519.PubKey(pk)
+		pkp, err := encoding.PubKeyToProto(pke)
+		if err != nil {
+			panic(err)
+		}
+		return ValidatorUpdate{
+			PubKey: pkp,
+			Power:  power,
+		}
+	case bn256.KeyType:
+		pke := bn256.PubKey(pk)
 		pkp, err := encoding.PubKeyToProto(pke)
 		if err != nil {
 			panic(err)

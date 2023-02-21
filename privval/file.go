@@ -14,6 +14,7 @@ import (
 	"github.com/tendermint/tendermint/crypto"
 	"github.com/tendermint/tendermint/crypto/ed25519"
 	"github.com/tendermint/tendermint/crypto/secp256k1"
+	"github.com/tendermint/tendermint/crypto/bn256"
 	"github.com/tendermint/tendermint/internal/jsontypes"
 	"github.com/tendermint/tendermint/internal/libs/protoio"
 	"github.com/tendermint/tendermint/internal/libs/tempfile"
@@ -215,6 +216,8 @@ func GenFilePV(keyFilePath, stateFilePath, keyType string) (*FilePV, error) {
 	switch keyType {
 	case types.ABCIPubKeyTypeSecp256k1:
 		return NewFilePV(secp256k1.GenPrivKey(), keyFilePath, stateFilePath), nil
+	case types.ABCIPubKeyTypeBn256:
+		return NewFilePV(bn256.GenPrivKey(), keyFilePath, stateFilePath), nil
 	case "", types.ABCIPubKeyTypeEd25519:
 		return NewFilePV(ed25519.GenPrivKey(), keyFilePath, stateFilePath), nil
 	default:

@@ -214,6 +214,7 @@ require (
 	github.com/ultraware/funlen v0.0.3 // indirect
 	github.com/ultraware/whitespace v0.0.5 // indirect
 	github.com/uudashr/gocognit v1.0.5 // indirect
+	github.com/willf/bitset v1.1.10 // indirect
 	github.com/yagipy/maintidx v1.0.0 // indirect
 	github.com/yeya24/promlinter v0.2.0 // indirect
 	gitlab.com/bosi/decorder v0.2.1 // indirect
@@ -241,6 +242,7 @@ require (
 )
 
 require (
+	github.com/ConsenSys/handel v0.0.0-20190910141952-bc3f6f8194db
 	github.com/creachadair/tomledit v0.0.22
 	github.com/pkg/errors v0.9.1
 	github.com/prometheus/client_model v0.2.0
